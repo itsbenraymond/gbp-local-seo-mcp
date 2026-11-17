@@ -1,0 +1,18 @@
+{
+  "name": "kg-gbp-mcp",
+  "version": "1.0.2",
+  "private": true,
+  "description": "Free hosted MCP server: Google Business Profile and local SEO checks for Australian local businesses.",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/itsbenraymond/gbp-local-seo-mcp.git" },
+  "homepage": "https://kangaroogrowth.com.au/free-tools/mcp",
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes wrangler@4 dev",
+    "test": "node --test test/tools.test.mjs test/guard.test.mjs",
+    "deploy": "node --test test/tools.test.mjs test/guard.test.mjs && npx --yes wrangler@4 deploy"
+  },
+  "dependencies": {
+    "qrcode-generator": "2.0.4"
+  }
+}

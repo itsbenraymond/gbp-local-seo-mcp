@@ -1,0 +1,29 @@
+name = "kg-gbp-mcp"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+account_id = "f8a18695ce2823f2ca61b2650a11bcee"
+workers_dev = true
+routes = [{ pattern = "mcp.kangaroogrowth.com.au", custom_domain = true }]
+
+# Counts tool calls by tool name only. No inputs are ever written.
+[[analytics_engine_datasets]]
+binding = "USAGE"
+dataset = "kg_gbp_mcp_usage"
+
+[observability]
+enabled = false
+
+# Abuse guard: one Durable Object per caller (IP, or MCP session for Claude.ai/ChatGPT traffic).
+[[durable_objects.bindings]]
+name = "GUARD"
+class_name = "Guard"
+
+[[migrations]]
+tag = "v1-guard"
+new_sqlite_classes = ["Guard"]
+
+# Bundle the brand icons as binary data (served at /favicon.ico, /icon-512.png etc).
+[[rules]]
+type = "Data"
+globs = ["**/*.png", "**/*.ico"]
+fallthrough = false
